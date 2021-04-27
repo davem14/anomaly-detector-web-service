@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "anomaly-detector-web-service", "anomaly-detector-web-service\anomaly-detector-web-service.csproj", "{F916C120-D7E3-4ABD-80B0-F96A044A08F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F916C120-D7E3-4ABD-80B0-F96A044A08F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F916C120-D7E3-4ABD-80B0-F96A044A08F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F916C120-D7E3-4ABD-80B0-F96A044A08F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F916C120-D7E3-4ABD-80B0-F96A044A08F8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {875844A2-7B9C-48B0-9A18-92794F697C37}
+	EndGlobalSection
+EndGlobal
