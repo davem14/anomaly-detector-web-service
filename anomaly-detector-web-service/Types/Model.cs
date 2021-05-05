@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 
 namespace anomaly_detector_web_service.Types
 {
@@ -9,15 +10,22 @@ namespace anomaly_detector_web_service.Types
         public DateTime upload_time { get; }
         private string stat;
         public string status { get => stat; }
-        private string model_type { get; }
+        public bool isRegression { get; }
+        public List<CorrelatedFeatures> cf { get; }
 
-        public Model(int model_id, string model_type)
+        public Model(int model_id, string model_type, Data train_data)
         {
             this.model_id = model_id;
             this.upload_time = DateTime.Now;
             this.stat = "pending";
+            AD ad = new AD(train_data);
+            this.cf = ad.cf;
+            isRegression = model_type.ToLower() == "regression";
         }
 
-        public void setReady() => this.stat = "ready";
+
+
+            void setReady() => this.stat = "ready";
+
+        }
     }
-}

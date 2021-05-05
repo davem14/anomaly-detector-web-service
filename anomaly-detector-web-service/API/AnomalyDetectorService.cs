@@ -2,28 +2,31 @@ using anomaly_detector_web_service.Types;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace anomaly_detector_web_service.Models
 {
+    
     public class AnomalyDetectorService : IAnomalyDetectorService
     {
         private int id;
-        private IDictionary<int, Model> models;
+        private IDictionary<int, Model> DB;
 
         public AnomalyDetectorService()
         {
             id = 1;
-            models = new Dictionary<int, Model>();
+            DB = new Dictionary<int, Model>();
         }
 
         public Model CreateModel(string model_type, Data train_data)
         {
             try
             {
-                while (models.ContainsKey(id))
+                while (DB.ContainsKey(id))
                     id++;
-                models.Add(id, new Model(id, model_type));
-                return models[id];
+                Model m = new Model(id, model_type, train_data);
+                DB.Add(id, m);  // add to Data-Base
+                return m;
             }
             catch (Exception)
             {
@@ -33,13 +36,13 @@ namespace anomaly_detector_web_service.Models
 
         public bool DeleteModel(int id)
         {
-            return models.Remove(id);
+            return DB.Remove(id);
         }
 
         public Model GetModel(int id)
         {
             Model m;
-            if (models.TryGetValue(id, out m))
+            if (DB.TryGetValue(id, out m))
                 return m;
             else
                 return null;
@@ -47,12 +50,19 @@ namespace anomaly_detector_web_service.Models
 
         public IEnumerable<Model> GetAllModels()
         {
-            return models.Values;
+            return DB.Values;
         }
 
         public Anomaly Detect(int model_id, Data predict_data)
         {
-            return new Anomaly();
+            // Data-Base
+            bool modelType = DB[model_id].isRegression;
+            List<CorrelatedFeatures> acf = DB[model_id].cf;
+
+            // Anomaly-Detector
+            AD ad = new AD(modelType);
+            AnomaliesReport ar = ad.detect(predict_data, acf);
+            return new Anomaly("A", "B", 12);
         }
     }
 }
