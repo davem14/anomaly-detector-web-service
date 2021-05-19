@@ -215,7 +215,10 @@ namespace anomaly_detector_web_service.Types
         {
             if (this.isRegression)
             {
-                return Math.Abs(y - (c.lin_reg.a*x+c.lin_reg.b)) > c.threshold;
+                if (Math.Abs(c.correlation) > Math.Abs(0.9/*normal threshold*/))
+                {
+                    return Math.Abs(y - (c.lin_reg.a * x + c.lin_reg.b)) > c.threshold;
+                }
             } else {
                 if (Math.Abs(c.correlation) > Math.Abs(0.9/*normal threshold*/))
                 {
@@ -223,6 +226,7 @@ namespace anomaly_detector_web_service.Types
                 }
                 return !isInCircle(c.MEC, new Point(x, y));
             }
+            return false;
         }
 
 

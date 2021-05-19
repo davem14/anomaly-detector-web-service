@@ -1,68 +1,103 @@
 using anomaly_detector_web_service.Types;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace anomaly_detector_web_service.Models
 {
-    
     public class AnomalyDetectorService : IAnomalyDetectorService
     {
-        private int id;
-        private IDictionary<int, Model> DB;
+        public List<CorrelatedFeatures> cf;
+        //Dictionary<string, List<double>> train_data;
+        //Dictionary<string, List<double>> test_data;
+        string model_type;
+        IFormFile train_file;
+        IFormFile test_file;
 
-        public AnomalyDetectorService()
+
+        public AnomalyDetectorService(string model_type, IFormFile train_file, IFormFile test_file)
         {
-            id = 1;
-            DB = new Dictionary<int, Model>();
+            this.model_type = model_type;
+            this.train_file = train_file;
+            this.test_file = test_file;
         }
 
-        public Model CreateModel(string model_type, Data train_data)
+        public ActionResult<AnomaliesReport> FindAnomaly()
         {
-            try
+            List<string> train = new List<string>();
+
+            using (var reader = new StreamReader(train_file.OpenReadStream()))
             {
-                while (DB.ContainsKey(id))
-                    id++;
-                Model m = new Model(id, model_type, train_data);
-                DB.Add(id, m);  // add to Data-Base
-                return m;
+                while (!reader.EndOfStream)
+                {
+                    train.Add(reader.ReadLine());
+                }
             }
-            catch (Exception)
+
+            List<string> test = new List<string>();
+            using (var reader = new StreamReader(test_file.OpenReadStream()))
             {
-                return null;
+                while (!reader.EndOfStream)
+                {
+                    test.Add(reader.ReadLine());
+                }
             }
+
+
+            return Detect(train, test);
         }
 
-        public bool DeleteModel(int id)
-        {
-            return DB.Remove(id);
-        }
 
-        public Model GetModel(int id)
+        public ActionResult<AnomaliesReport> Detect(List<string> train, List<string> test)
         {
-            Model m;
-            if (DB.TryGetValue(id, out m))
-                return m;
-            else
-                return null;
-        }
+            Dictionary<string, List<double>> train_data = new Dictionary<string, List<double>>();
+            string[] featuresTrain = train[0].Split(',');
+            foreach (string i in featuresTrain)
+            {
+                if (String.Compare("", i) != 0)
+                    train_data.Add(i, new List<double>());
+            }
+            for (int i = 1; i < train.Count; i++)
+            {
+                double[] values = Array.ConvertAll(train[i].Split(','), double.Parse);
+                for (int j = 0; j < values.Length; j++)
+                {
+                    List<double> list;
+                    train_data.TryGetValue(featuresTrain[j], out list);
+                    list.Add(values[j]);
+                }
+            }
 
-        public IEnumerable<Model> GetAllModels()
-        {
-            return DB.Values;
-        }
+            Dictionary<string, List<double>> test_data = new Dictionary<string, List<double>>();
+            string[] featuresTest = test[0].Split(',');
+            foreach (string i in featuresTest)
+            {
+                test_data.Add(i, new List<double>());
+            }
+            for (int i = 1; i < test.Count; i++)
+            {
+                double[] values = Array.ConvertAll(test[i].Split(','), double.Parse);
+                for (int j = 0; j < values.Length; j++)
+                {
+                    List<double> list;
+                    test_data.TryGetValue(featuresTest[j], out list);
+                    list.Add(values[j]);
+                }
+            }
 
-        public Anomaly Detect(int model_id, Data predict_data)
-        {
-            // Data-Base
-            bool modelType = DB[model_id].isRegression;
-            List<CorrelatedFeatures> acf = DB[model_id].cf;
+            // Learn
+            AD ad1 = new AD(new Data(train_data));
+            this.cf = ad1.cf;
 
             // Anomaly-Detector
-            AD ad = new AD(modelType);
-            AnomaliesReport ar = ad.detect(predict_data, acf);
-            return new Anomaly("A", "B", 12);
+            AD ad2 = new AD(model_type.ToLower() == "regression");
+            AnomaliesReport ar = ad2.detect(new Data(test_data), this.cf);
+
+            return ar;
         }
     }
 }
