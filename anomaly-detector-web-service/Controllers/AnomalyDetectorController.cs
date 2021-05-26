@@ -22,7 +22,7 @@ namespace anomaly_detector_web_service.Controllers
         [HttpPost]
         public async Task<ActionResult<AnomaliesReport>> PostAnomalyFirst()
         {
-            string model = Request.Form["anomlyModels"];
+            string model = Request.Form["anomalyModels"];
             var train = Request.Form.Files["trainFile"];
             var test = Request.Form.Files["testFile"];
 
@@ -32,9 +32,9 @@ namespace anomaly_detector_web_service.Controllers
         }
 
         [HttpPost("detect")]
-        public async Task<ActionResult<AnomaliesReport>> PostAnomalySecond(CancellationToken cancelToken)
+        public async Task<ActionResult<AnomaliesReport>> PostAnomalySecond()
         {
-            string model = Request.Form["anomlyModels"];
+            string model = Request.Form["anomalyModels"];
             var train = Request.Form.Files["trainFile"];
             var test = Request.Form.Files["testFile"];
 

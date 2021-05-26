@@ -23,14 +23,26 @@
             padding: 0px 0px 0px 160px;
         }
 
+        .subtitle {
+            color: #1e3947;
+            font-size: 25px;
+        }
+
+        files_and_select_style {
+            margin-bottom: 15px;
+        }
+
         .box {
             border: 1px solid #1e77ad;
             box-shadow: 1px 1px 10px #989898;
             border-radius: 7px;
             background-color: #ccd8db;
             min-height: 300px;
-            padding: 10px;
+            padding: 20px;
         }
+
+        
+
     </style>
 
 </head>
@@ -38,58 +50,48 @@
 
     <!-- tilte -->
     <div class="jumbotron p-4 p-md-5 text-white rounded color_title">
-        <h1 class="display-2 font_title_style"><span style="color: #9e4f63">A</span>nomaly <span style="color: #3575a1">D</span>etector<span style="color: #9b854b">.</span></h1>
+        <h1 class="display-2 font_title_style"><span style="color: #9e4f63">A</span>nomaly <span style="color: #3575a1">D</span>etection <span style="color: #9b854b">S</span>erver</h1>
     </div>
 
 
-    <div class="container-fluid" style="padding: 20px 200px 200px 200px;">
+    <div class="container-fluid" style="padding: 20px 150px 150px 150px;">
 
         <!-- width -->
         <header class="blog-header py-3">
         </header>
 
         <div class="row mb-2">
-            <div class="col-md-7">
-                <!-- graph -->
-                <!--h1 class="font_title_graph_style">Graphs<span style="color: #3e99d7">.</span></!--h1>
-                <!-- graph box-->
+            <div class="col-md-5">
+                
                 <div class="box">
-                    <h3>Please choose train file, test file and model</h3>
-                    <form class="" action="detect" enctype="multipart/form-data" name="anomalyForm" method="post" target="anomalyDisplay">
+                    <form action="detect" enctype="multipart/form-data" name="anomalyForm" method="post">
+                        <h3 class="subtitle">Train file</h3>
+                        <input required type="file" name="trainFile">
                         <br>
-                        <h3>Train file</h3>
-                        <input required type="file" name="trainFile" value="">
+                        <h3 class="subtitle" style="padding-top: 15px">Test file</h3>
+                        <input required type="file" name="testFile">
                         <br>
-                        <h3>Test file</h3>
-                        <input required type="file" name="testFile" value="">
-                        <br>
-                        <h3>Model</h3>
-                        <select required size="3" class="" name="anomlyModels">
+                        <h3 class="subtitle" style="padding-top: 15px">Model</h3>
+                        <select required size="3" name="anomalyModels">
                             <option value="regression">Regression</option>
                             <option value="hybrid">Hybrid</option>
                         </select>
                         <br>
+                        <br>
                         <input type="submit">
                     </form>
                 </div>
-
             </div>
 
-            <div class="col-md-4 offset-1">
-                <!-- models -->
-                <!--h1 class="font_title_models_style">Models<span style="color: #47afb5">.</span></!--h1>
-                <!-- models box-->
+            <div class="col-md-6 offset-1">
                 <div class="box" id="ad"></div>
             </div>
         </div>
 
     </div>
 
-    <!--iframe name="anomalyDisplay" width="80%" height="50%"></iframe-->
-    <!--textarea id="ad" name="anomalyDisplay2" rows="8" cols="80"></textarea-->
     <script type="text/javascript">
             document.addEventListener("submit", (e) => {
-                var response;
                 const form = e.target;
                 e.preventDefault();
                 fetch(form.action, {
@@ -113,8 +115,9 @@
 
 
 
-            function jsonToDisplay(data) {
-                var s = "<div>";
+        function jsonToDisplay(data) {
+                var j = 1;
+            var s = "<h3 class='subtitle' style='padding-bottom: 15px'>The anomalies:</h3><div>";
                 var jsonObj = JSON.parse(data);
                 var obj = jsonObj["reports"];
                 Object.keys(obj).forEach(function (key) {
@@ -123,11 +126,12 @@
 
                     for (var i = 0; i < value.length; i++) {
 
-                        s += "<p>\'" + key + "\'";
+                        s += "<p><b>" + j + ". </b>\'" + key + "\'";
                         s += " with \'" + value[i]["withFeature"] + "\' in time ";
-                        s += value[i]["start"] + " to " + value[i]["end"];
+                        s += value[i]["start"] + " - " + value[i]["end"];
                         console.log(s);
                         s += "</p>";
+                        j++;
                     }
                 });
                 s += "</div>"
