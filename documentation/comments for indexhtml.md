@@ -1,7 +1,7 @@
-**index.html comments:**
+## index.html comments:
 
 This file is invoked when the user write localhost:8080 in his browser.
-As a result, the ASP system activates this index.html file which is on the wwwroot directory. 
+As a result, the ASP system activates this index.html file which is on the `'wwwroot'` directory. 
 
 This file presents a form for the user to select two CSV files and a model type. 
 
@@ -11,7 +11,7 @@ The trainFile will be used by the server to train the model and the testFile wil
 by the server to test the model and report anomalies if exists. The reported anomalies of the
 server will be presented at the item in this file with name "ad".
 
-The train and the test files that the user select must fulfil the following rules:
+**The train and the test files that the user select must fulfil the following rules:**
 1. The number of columns of trainCSV must be equal to the number of columns of testCSV.
 2. The number of rows of trainCSV must be equal to the number of rows of testCSV.
 3. The first row of trainCSV file must be equal the first row of testVSV file. The first row in each file contains
