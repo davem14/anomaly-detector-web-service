@@ -31,7 +31,7 @@ The service's front end was written in JavaScript.
 
 
 ## Necessary installations to work with the code:
-1. ??????
+Visual Studio with ASP.NET platform.
 
 ## App installation and using instructions:
 
