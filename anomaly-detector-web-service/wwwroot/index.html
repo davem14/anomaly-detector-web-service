@@ -108,8 +108,7 @@
                         result.innerHTML = jsonToDisplay(doc.body.innerHTML);
                     })
                     .catch((err) => {
-                        alret("Error")
-                        console.error("Error");
+                        alert("Error")
                     });
             });
 
@@ -129,7 +128,6 @@
                         s += "<p><b>" + j + ". </b>\'" + key + "\'";
                         s += " with \'" + value[i]["withFeature"] + "\' in time ";
                         s += value[i]["start"] + " - " + value[i]["end"];
-                        console.log(s);
                         s += "</p>";
                         j++;
                     }
