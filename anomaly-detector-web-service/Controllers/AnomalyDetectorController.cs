@@ -9,66 +9,21 @@ using System.Threading.Tasks;
 namespace anomaly_detector_web_service.Controllers
 {
     [ApiController]
-    [Route("")]
     public class AnomalyDetectorController : ControllerBase
     {
-
-        private readonly ILogger<AnomalyDetectorController> _logger;
-
-        public AnomalyDetectorController(ILogger<AnomalyDetectorController> logger)
-        {
-            _logger = logger;
-        }
-
+        [Route("")]
+        [Route("detect")]
         [HttpPost]
-        public async Task<ActionResult<AnomaliesReport>> PostAnomalyFirst()
+        public async Task<ActionResult<AnomaliesReport>> PostAnomaly()
         {
-            string model = "";
-            IFormFile train = null;
-            IFormFile test = null;
-
-            try
-            {
-                model = Request.Form["anomalyModels"];
-                train = Request.Form.Files["trainFile"];
-                test = Request.Form.Files["testFile"];
-            }
-            catch
-            {
-                Ok("{Incorrect field names}");
-            }
+            string model = Request.Form["anomalyModels"];
+            IFormFile train = Request.Form.Files["trainFile"];
+            IFormFile test = Request.Form.Files["testFile"];
+            if (model == null || train == null || test == null)
+                return BadRequest("Read params failed");
 
             IAnomalyDetectorService anomalyDetectorService = new AnomalyDetectorService(model, train, test);
             ActionResult<AnomaliesReport> anomaly = await Task.Run(anomalyDetectorService.FindAnomaly);
-            if (anomaly == null)
-                return Ok("{Incorrect field names or Invalid files}");
-
-            return anomaly;
-        }
-
-        [HttpPost("detect")]
-        public async Task<ActionResult<AnomaliesReport>> PostAnomalySecond()
-        {
-            string model = "";
-            IFormFile train = null;
-            IFormFile test = null;
-
-            try
-            {
-                model = Request.Form["anomalyModels"];
-                train = Request.Form.Files["trainFile"];
-                test = Request.Form.Files["testFile"];
-            }
-            catch
-            {
-                Ok("{Incorrect field names}");
-            }
-
-            IAnomalyDetectorService anomalyDetectorService = new AnomalyDetectorService(model, train, test);
-            ActionResult<AnomaliesReport> anomaly = await Task.Run(anomalyDetectorService.FindAnomaly);
-            if (anomaly == null)
-                return Ok("{Incorrect field names or Invalid files}");
-
             return anomaly;
         }
     }
