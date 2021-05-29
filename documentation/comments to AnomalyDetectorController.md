@@ -11,13 +11,13 @@ This file can be invoked in two ways.
 No matter whether the code is invoked using option 1 or option 2 
 the treatment of both cases is the same and is described below:
 1. The type of model is taken from the html form from the item named
-    "anomlyModels". There are exactly two possible values that can
+    `"anomlyModels"`. There are exactly two possible values that can
     be in this item: regression or hybrid. The server currently does not
     support other type of models.
 2. The name of the CSV train file is taken from the item named 
-    "trainFile".
+    `"trainFile"`.
 3. The name of the CSV test file is taken from the item named 
-    "testFile".
+    `"testFile"`.
 4. An asynchronous task is created to contact the server. This task transfers
     the two files and the type of model to the server, and returns
     a json object which contains the anomaly report. The anomaly reports
@@ -25,13 +25,13 @@ the treatment of both cases is the same and is described below:
 
 An invoker of this AnomalyDetectorController program should follow the following rules:
 1. There should be an item of an html form behind the invoker with name
-    "anomlyModels" and this item can have only two possible values:
+    `"anomlyModels"` and this item can have only two possible values:
     regression or hybrid.
 2. There should be an item of an html form behind the invoker with name
-    "trainFile" and the value of this item should be a name of a train CSV
+    `"trainFile"` and the value of this item should be a train CSV
     file. 
 3. There should be an item of an html form behind the invoker with name
-    "testFile" and the value of this item should be a name of a test CSV
+    `"testFile"` and the value of this item should be a test CSV
     file. 
 4. The trainFile and the testFile described in steps 2 and 3 above should
     follow the following rules:
