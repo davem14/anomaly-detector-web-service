@@ -36,13 +36,21 @@ Visual Studio with ASP.NET platform.
 ## App installation and using instructions:
 
 ### Installation instructions:
-???
+1. Install the program 'Visual Studio'.
+2. Inside the Visual Studio installation, Install the necessary Workload: 'ASP.NET and web development'.
+
 
 ### Using instructions:
+1. Clone the Git project.
+2. Open the directory 'anomaly-detector-web-service' with Visual Studio.
+3. Click on the button 'IIS Express' at the top of the screen.
 
-Via browser - enter the adress "localhost:8080", choose to 'csv' files (of normal data and to be detected data) and choose the anomalies detection algorithm.
+Now the server is running.
 
-Via HTTP requests - send HTTP POST to adress "localhost:8080". request has to contain he desired anomalies detection algorithm and the 2 'csv' files.
+5. Via browser - enter the adress "localhost:8080", choose to 'csv' files (of normal data and to be detected data) and choose the anomalies detection algorithm.
+6. Via HTTP requests - send HTTP POST to adress "localhost:8080". request has to contain he desired anomalies detection algorithm and the 2 'csv' files.
+
+
 
 
 ## Link to video for demo of using:
