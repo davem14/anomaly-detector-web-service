@@ -1,6 +1,6 @@
 ## comments to AnomalyDetectorController:
 
-This file can be invoked in two ways. 
+**This file can be invoked in two ways:**
 1. from the index.html form at the wwwroot directory when the user
     press the submit button then a post http request to `/localhost:8080/detect`
     is issued, and as a result the part of code that starts with 
@@ -8,8 +8,8 @@ This file can be invoked in two ways.
 2. when the user issues a post `/localhost:8080/` request using any software.
     In this case the part of code that starts with `[HttpPost]` is invoked.
 
-No matter whether the code is invoked using option 1 or option 2 
-the treatment of both cases is the same and is described below:
+**No matter whether the code is invoked using option 1 or option 2 
+the treatment of both cases is the same and is described below:**
 1. The type of model is taken from the html form from the item named
     `"anomlyModels"`. There are exactly two possible values that can
     be in this item: regression or hybrid. The server currently does not
@@ -23,7 +23,7 @@ the treatment of both cases is the same and is described below:
     a json object which contains the anomaly report. The anomaly reports
     return from the task is then returned to the invoker of this AnomalyDetectorController program. 
 
-An invoker of this AnomalyDetectorController program should follow the following rules:
+**An invoker of this AnomalyDetectorController program should follow the following rules:**
 1. There should be an item of an html form behind the invoker with name
     `"anomlyModels"` and this item can have only two possible values:
     regression or hybrid.
@@ -44,7 +44,7 @@ An invoker of this AnomalyDetectorController program should follow the following
     column represents a different feature, and the first row of each file represent the feature            
     names. 
 
-The format of the json object returned by this program is as described by the following example:
+**The format of the json object returned by this program is as described by the following example:**
 ```js
 {"reports":{"A":[{"start":50,"end":50,"withFeature":"B"}],"C":[{"start":86,"end":86,"withFeature":"D"}]}}
 ```
