@@ -8,6 +8,6 @@ namespace anomaly_detector_web_service.Models
     public interface IAnomalyDetectorService
     {
         public ActionResult<AnomaliesReport> FindAnomaly();
-        public ActionResult<AnomaliesReport> Detect(List<string> train, List<string> test);
+        //public ActionResult<AnomaliesReport> Detect(List<string> train, List<string> test);
     }
 }
