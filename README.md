@@ -58,7 +58,7 @@ The CSV files must be correct, in order for the server to handle them. To check 
 ## More documentation:
 - [Html](documentation/comments_for_indexhtml.md)
 - [Controller](documentation/comments_on_AnomalyDetectorController.md)
-- [UML diagram](documentation/UML.png)
+- [UML diagram](documentation/UML.jpg)
 
 
 ## Link to video for demo of using:
