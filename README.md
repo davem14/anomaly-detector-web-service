@@ -23,9 +23,9 @@ The service's front end was written in JavaScript.
 ## General structure of the folders:
 1. **flight-inspection-app**:
     - Model:
-      - contains Anomaly Detector's classes.
+      - contains Anomaly Detectors' classes (Regression and Hybrid).
     - Controllers:
-      - file "AnomalyDetectorController" - HTTP requests API ???
+      - file "AnomalyDetectorController" -[Controller](documentation/comments to AnomalyDetectorController.md)
     - API:
 		????
 
@@ -50,11 +50,13 @@ Now the server is running.
 5. Via browser - enter the adress "localhost:8080", choose to 'csv' files (of normal data and to be detected data) and choose the anomalies detection algorithm.
 6. Via HTTP requests - send HTTP POST to adress "localhost:8080". request has to contain he desired anomalies detection algorithm and the 2 'csv' files.
 
-
+## More documentation about the classes:
+- [Controller](documentation/comments to AnomalyDetectorController.md)
+- [UML diagram](documentation/UML.png)
 
 
 ## Link to video for demo of using:
-????
+https://www.youtube.com/watch?v=-x3X8kHBVfo
 
 ## Developed by:
 * Yuval Tal
@@ -63,4 +65,4 @@ Now the server is running.
 * Dov Moshe
 
 ## Downloads:
-???
+https://visualstudio.microsoft.com/
