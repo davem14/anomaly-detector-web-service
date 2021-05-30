@@ -45,7 +45,7 @@ Visual Studio with ASP.NET platform.
 ### Using instructions:
 1. Clone the Git project.
 2. Open the directory 'anomaly-detector-web-service' with Visual Studio.
-3. Click on the button 'IIS Express' at the top of the screen.
+3. Click the button 'IIS Express' at the top of the screen.
 
 Now the server is running.
 
