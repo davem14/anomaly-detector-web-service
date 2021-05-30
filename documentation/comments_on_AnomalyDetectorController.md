@@ -1,4 +1,4 @@
-## comments to AnomalyDetectorController:
+## comments on AnomalyDetectorController:
 
 **This file can be invoked in two ways:**
 1. from the index.html form at the wwwroot directory when the user
