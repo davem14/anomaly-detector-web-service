@@ -55,6 +55,7 @@ Now the server is running.
 The CSV files must be correct, in order for the server to handle them. To check if the files are correct look at [this link](documentation/comments_for_indexhtml.md).
 
 ## More documentation:
+- [Html](documentation/comments_for_indexhtml.md)
 - [Controller](documentation/comments_on_AnomalyDetectorController.md)
 - [UML diagram](documentation/UML.png)
 
