@@ -53,6 +53,7 @@ Now the server is running.
 6. Via HTTP requests - send HTTP POST to adress "localhost:8080". request has to contain he desired anomalies detection algorithm and the 2 'csv' files.
 
 The CSV files must be correct, in order for the server to handle them. To check if the files are correct look at [this link](documentation/comments_for_indexhtml.md).
+> The html page is not supported by 'Internet Explorer' browser.
 
 ## More documentation:
 - [Html](documentation/comments_for_indexhtml.md)
