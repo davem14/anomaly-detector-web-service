@@ -21,13 +21,15 @@ The service's back end was written in C# using ASP.NET Framework platform.
 The service's front end was written in JavaScript.
 
 ## General structure of the folders:
-1. **Anomaly-detector-webApp**:
+- **anomaly-detector-web-service:**
     - Model:
       - contains Anomaly Detectors' classes (Regression and Hybrid).
     - Controllers:
       - file "AnomalyDetectorController" - checks HTTP POST request and pass it to the API, then returns JSON with detected anomalies. [Documentation](documentation/comments_on_AnomalyDetectorController.md)
     - API:
       - Invokes the Anomalies Detection Algorithm in the Model.
+    - wwwroot:
+      - Contains the static files like 'index.html' and css files.
 
 
 ## Necessary installations to work with the code:
