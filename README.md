@@ -51,7 +51,7 @@ Now the server is running.
 6. Via HTTP requests - send HTTP POST to adress "localhost:8080". request has to contain he desired anomalies detection algorithm and the 2 'csv' files.
 
 ## More documentation about the classes:
-- [Controller](documentation/comments to AnomalyDetectorController.md)
+- [Controller](documentation/comments_on_AnomalyDetectorController.md)
 - [UML diagram](documentation/UML.png)
 
 
