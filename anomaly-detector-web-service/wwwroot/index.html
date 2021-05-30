@@ -115,26 +115,31 @@
 
 
         function jsonToDisplay(data) {
-                var j = 1;
+            var j = 1;
             var s = "<h3 class='subtitle' style='padding-bottom: 15px'>The anomalies:</h3><div>";
-                var jsonObj = JSON.parse(data);
-                var obj = jsonObj["reports"];
-                Object.keys(obj).forEach(function (key) {
+            var jsonObj = JSON.parse(data);
+            var obj = jsonObj["reports"];
 
-                    var value = obj[key];
-
-                    for (var i = 0; i < value.length; i++) {
-
-                        s += "<p><b>" + j + ". </b>\'" + key + "\'";
-                        s += " with \'" + value[i]["withFeature"] + "\' in time ";
-                        s += value[i]["start"] + " - " + value[i]["end"];
-                        s += "</p>";
-                        j++;
-                    }
-                });
-                s += "</div>"
-                return s;
+            if (JSON.stringify(obj) === JSON.stringify(JSON.parse("{}"))) {
+                return "<h3 class='subtitle' style='padding-bottom: 15px; color: darkred'>No anomalies</h3>";
             }
+            
+            Object.keys(obj).forEach(function (key) {
+
+                var value = obj[key];
+
+                for (var i = 0; i < value.length; i++) {
+
+                    s += "<p><b>" + j + ". </b>\'" + key + "\'";
+                    s += " with \'" + value[i]["withFeature"] + "\' in time ";
+                    s += value[i]["start"] + " - " + value[i]["end"];
+                    s += "</p>";
+                    j++;
+                }
+            });
+            s += "</div>"
+            return s;
+        }
     </script>
 
 </body>
