@@ -25,9 +25,9 @@ The service's front end was written in JavaScript.
     - Model:
       - contains Anomaly Detectors' classes (Regression and Hybrid).
     - Controllers:
-      - file "AnomalyDetectorController" -[Controller](documentation/comments to AnomalyDetectorController.md)
+      - file "AnomalyDetectorController" - processes HTTP POST request and pass it to the API, [Documentation](documentation/comments_on_AnomalyDetectorController.md)
     - API:
-		????
+      - Invokes the Anomalies Detection Algorithm in the Model.
 
 
 ## Necessary installations to work with the code:
@@ -50,7 +50,7 @@ Now the server is running.
 5. Via browser - enter the adress "localhost:8080", choose to 'csv' files (of normal data and to be detected data) and choose the anomalies detection algorithm.
 6. Via HTTP requests - send HTTP POST to adress "localhost:8080". request has to contain he desired anomalies detection algorithm and the 2 'csv' files.
 
-## More documentation about the classes:
+## More documentation:
 - [Controller](documentation/comments_on_AnomalyDetectorController.md)
 - [UML diagram](documentation/UML.png)
 
