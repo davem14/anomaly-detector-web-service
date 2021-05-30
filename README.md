@@ -7,25 +7,25 @@ The web service is accessible for user's browser as well for automated services 
 ### General operation:
 To detect anomalies in client's data, client (user via browser or service via http request) has to upload 'csv' file that contains normal data, and 'csv' file of data to be checked for anomalies (by comparison with the normal data).
 
-'csv' files has to contain features' names.
+'csv' files has to contain exactly the same features' names (with no repetition) and same amount of rows.
 
 ### The web service's design pattern:
 The web service was designed with MVC architecture.
 The Model responsible for learning the normal data and detecting anomalies in the given data, which its get as an input.
-The view is the service's front end, users upload to it their files, and it shows them the result of the anomalies detection.
+The view is the index.html that is viewed by user's browser, to which the user uploads files and chooses an algorithm. After detection, detected anomoalies is shown.
 The Controller is the connector between the Model and the View.
-Files uploaded to the View by user are processed in the Controller to be a valid input for the Model to process, and the Model pass detection result to the Controller which then pass it to the View.
+The Controller invokes the Anmoalies Detection process in the Model, and the Model pass detection result to the Controller which then pass it to the View.
 
 ### Developing tools:
 The service's back end was written in C# using ASP.NET Framework platform.
 The service's front end was written in JavaScript.
 
 ## General structure of the folders:
-1. **flight-inspection-app**:
+1. **Anomaly-detector-webApp**:
     - Model:
       - contains Anomaly Detectors' classes (Regression and Hybrid).
     - Controllers:
-      - file "AnomalyDetectorController" - processes HTTP POST request and pass it to the API, [Documentation](documentation/comments_on_AnomalyDetectorController.md)
+      - file "AnomalyDetectorController" - checks HTTP POST request and pass it to the API, then returns JSON with detected anomalies. [Documentation](documentation/comments_on_AnomalyDetectorController.md)
     - API:
       - Invokes the Anomalies Detection Algorithm in the Model.
 
