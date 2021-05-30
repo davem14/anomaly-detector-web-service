@@ -35,12 +35,12 @@ the treatment of both cases is the same and is described below:**
     file. 
 4. The trainFile and the testFile described in steps 2 and 3 above should
     follow the following rules:
-    a. The number of columns of trainCSV must be equal to the number of columns of testCSV.
-    b. The number of rows of trainCSV must be equal to the number of rows of testCSV.
-    c. The first row of trainCSV file must be equal the first row of testVSV file.  The first row in each           
+    4.1) The number of columns of trainCSV must be equal to the number of columns of testCSV.
+    4.2) The number of rows of trainCSV must be equal to the number of rows of testCSV.
+    4.3) The first row of trainCSV file must be equal the first row of testVSV file.  The first row in each           
     file contains the feature names and therefore the equality is necessary since both files                     
     represents the same features. 
-    d. In each file the first row does not contain repeated features names. This is necessary since each            
+    4.4) In each file the first row does not contain repeated features names. This is necessary since each            
     column represents a different feature, and the first row of each file represent the feature            
     names. 
 
